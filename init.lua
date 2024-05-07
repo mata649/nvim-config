@@ -1,2 +1,1 @@
-require("mata649")
-
+require("mata649.remap")
