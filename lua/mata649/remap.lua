@@ -1,0 +1,5 @@
+vim.keymap.set("n", "<C-E>", vim.cmd.Ex)
+vim.keymap.set("i", "<C-z>", vim.cmd.undo)
+vim.keymap.set("n", "<C-z>", vim.cmd.undo)
+vim.keymap.set("i", "<C-y>", vim.cmd.redo)
+vim.keymap.set("n", "<C-y>", vim.cmd.redo)
