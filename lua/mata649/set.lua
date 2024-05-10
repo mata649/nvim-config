@@ -6,9 +6,9 @@ vim.opt.expandtab = true
 
 vim.opt.smartindent = true
 
-vim.opt.hlsearch=true
-vim.opt.incsearch=true
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
 
 vim.opt.scrolloff = 40
 vim.opt.updatetime = 50
-vim.api.nvim_set_option("clipboard","unnamed")
+vim.api.nvim_set_option("clipboard", "unnamed")
