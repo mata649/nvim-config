@@ -16,7 +16,7 @@ require("mason-lspconfig").setup({
 		"jdtls",
 		"kotlin_language_server",
 		"jsonls",
-		"pylyzer",
+		"pylsp",
 		"gopls",
 		"html",
 		"yamlls",
