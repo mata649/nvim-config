@@ -15,6 +15,8 @@ return require("packer").startup(function(use)
 	use({ "catppuccin/nvim", as = "catppuccin" })
 
 	use({ "nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" } })
+
+	use("mfussenegger/nvim-dap")
 	use({
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v3.x",
@@ -43,4 +45,17 @@ return require("packer").startup(function(use)
 
 	-- Automatically does things
 	use("WhoIsSethDaniel/mason-tool-installer.nvim")
+
+	use("Raimondi/delimitMate")
+	-- Python
+	use("mfussenegger/nvim-dap-python")
+	use("linux-cultist/venv-selector.nvim", {
+		requires = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim", "mfussenegger/nvim-dap-python" },
+	})
+	-- Git
+	use("sindrets/diffview.nvim")
+	use("NeogitOrg/neogit", {
+		requires = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim", "nvim-telescope/telescope.nvim" },
+	})
+	use("nvim-tree/nvim-web-devicons")
 end)
