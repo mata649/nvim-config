@@ -95,6 +95,16 @@ _G.packer_plugins = {
     path = "/home/mata649/.local/share/nvim/site/pack/packer/start/conform.nvim",
     url = "https://github.com/stevearc/conform.nvim"
   },
+  delimitMate = {
+    loaded = true,
+    path = "/home/mata649/.local/share/nvim/site/pack/packer/start/delimitMate",
+    url = "https://github.com/Raimondi/delimitMate"
+  },
+  ["diffview.nvim"] = {
+    loaded = true,
+    path = "/home/mata649/.local/share/nvim/site/pack/packer/start/diffview.nvim",
+    url = "https://github.com/sindrets/diffview.nvim"
+  },
   ["lsp-zero.nvim"] = {
     loaded = true,
     path = "/home/mata649/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
@@ -115,10 +125,25 @@ _G.packer_plugins = {
     path = "/home/mata649/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+  neogit = {
+    loaded = true,
+    path = "/home/mata649/.local/share/nvim/site/pack/packer/start/neogit",
+    url = "https://github.com/NeogitOrg/neogit"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/mata649/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-dap"] = {
+    loaded = true,
+    path = "/home/mata649/.local/share/nvim/site/pack/packer/start/nvim-dap",
+    url = "https://github.com/mfussenegger/nvim-dap"
+  },
+  ["nvim-dap-python"] = {
+    loaded = true,
+    path = "/home/mata649/.local/share/nvim/site/pack/packer/start/nvim-dap-python",
+    url = "https://github.com/mfussenegger/nvim-dap-python"
   },
   ["nvim-jdtls"] = {
     loaded = true,
@@ -154,6 +179,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mata649/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["venv-selector.nvim"] = {
+    loaded = true,
+    path = "/home/mata649/.local/share/nvim/site/pack/packer/start/venv-selector.nvim",
+    url = "https://github.com/linux-cultist/venv-selector.nvim"
   }
 }
 
