@@ -1,6 +1,6 @@
 vim.g.mapleader = " "
 -- Explorer
-vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
+vim.keymap.set("n", "<C-e>", vim.cmd.Ex)
 -- Delete word
 vim.keymap.set("i", "<C-h>", "<C-w>")
 
@@ -16,5 +16,5 @@ vim.keymap.set("x", "p", '"_dP')
 
 -- Tabs
 vim.keymap.set("n", "<leader>t", vim.cmd.tabnew)
-vim.keymap.set("n", "<leader>d", vim.cmd.tabNext)
-vim.keymap.set("n", "<leader>a", vim.cmd.tabp)
+vim.keymap.set("n", "<leader>nt", vim.cmd.tabnext)
+vim.keymap.set("n", "<leader>pt", vim.cmd.tabp)

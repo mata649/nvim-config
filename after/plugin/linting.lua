@@ -7,7 +7,6 @@ lint.linters_by_ft = {
 	javascriptreact = { "eslint_d" },
 	typescriptreact = { "eslint_d" },
 	python = { "pylint" },
-	go = { "golangci-lint" },
 	json = { "jsonlint" },
 }
 
