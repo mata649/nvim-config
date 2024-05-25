@@ -14,6 +14,7 @@ vim.keymap.set("v", "<C-Down>", ":m '>+1<CR>gv=gv")
 -- I don't remember but I am sure it pastes
 vim.keymap.set("x", "p", '"_dP')
 
+vim.keymap.set("n", "<leader>ga", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 -- Tabs
 vim.keymap.set("n", "<leader>t", vim.cmd.tabnew)
 vim.keymap.set("n", "<leader>nt", vim.cmd.tabnext)
