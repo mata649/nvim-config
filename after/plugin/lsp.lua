@@ -13,7 +13,6 @@ require("mason-lspconfig").setup({
 	ensure_installed = {
 		"elixirls",
 		"dockerls",
-		"jdtls",
 		"kotlin_language_server",
 		"jsonls",
 		"pylsp",
@@ -21,10 +20,13 @@ require("mason-lspconfig").setup({
 		"html",
 		"yamlls",
 		"lua_ls",
+		"jdtls",
 	},
 	handlers = {
 		function(server_name)
-			require("lspconfig")[server_name].setup({})
+			if server_name ~= "jdtls" then
+				require("lspconfig")[server_name].setup({})
+			end
 		end,
 	},
 })
