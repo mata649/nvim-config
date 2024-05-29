@@ -2,7 +2,7 @@ local home = os.getenv("HOME")
 local workspace_path = home .. "/.local/share/nvim/jdtls-workspace/"
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = workspace_path .. project_name
-
+local java_dap_path = home .. "/java/java-debug-0.52.0/com.microsoft.java.debug.plugin/target/"
 local status, jdtls = pcall(require, "jdtls")
 if not status then
 	return
@@ -52,17 +52,23 @@ local config = {
 				},
 			},
 			format = {
-				enabled = false,
+				enabled = true,
 			},
 		},
 	},
 
 	init_options = {
-		bundles = {},
+		bundles = {
+			vim.fn.glob(java_dap_path .. "com.microsoft.java.debug.plugin-0.52.0.jar", 1),
+		},
 	},
 }
+config["on_attach"] = function(client, bufnr)
+	require("jdtls").setup_dap({ hotcodereplace = "auto" })
+end
 require("jdtls").start_or_attach(config)
 
+-- keymaps
 vim.keymap.set("n", "<leader>co", "<Cmd>lua require'jdtls'.organize_imports()<CR>", { desc = "Organize Imports" })
 vim.keymap.set("n", "<leader>crv", "<Cmd>lua require('jdtls').extract_variable()<CR>", { desc = "Extract Variable" })
 vim.keymap.set(
@@ -84,3 +90,90 @@ vim.keymap.set(
 	"<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>",
 	{ desc = "Extract Method" }
 )
+
+-- dap
+local function get_spring_boot_runner(profile, debug)
+	local debug_param = ""
+	if debug then
+		debug_param =
+			' -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005" '
+	end
+
+	local profile_param = ""
+	if profile then
+		profile_param = " -Dspring-boot.run.profiles=" .. profile .. " "
+	end
+
+	return "mvn spring-boot:run " .. profile_param .. debug_param
+end
+
+local function run_spring_boot(debug)
+	vim.cmd("term " .. get_spring_boot_runner("local", debug))
+end
+
+vim.keymap.set("n", "<F9>", function()
+	run_spring_boot()
+end)
+
+vim.keymap.set("n", "<F10>", function()
+	run_spring_boot(true)
+end)
+
+function attach_to_debug()
+	local dap = require("dap")
+	dap.configurations.java = {
+		{
+			type = "java",
+			request = "attach",
+			name = "Attach to the process",
+			hostName = "localhost",
+			port = "5005",
+		},
+	}
+	dap.continue()
+end
+vim.keymap.set("n", "<leader>da", ":lua attach_to_debug()<CR>")
+
+vim.keymap.set("n", "<F5>", ":lua require('dap').continue()<CR>")
+vim.keymap.set("n", "<F6>", ":lua require('dap').step_over()<CR>")
+vim.keymap.set("n", "<F7>", ":lua require('dap').step_into()<CR>")
+vim.keymap.set("n", "<F8>", ":lua require('dap').step_out()<CR>")
+
+-- setup debug
+vim.keymap.set("n", "<leader>b", ":lua require('dap').toggle_breakpoint()<CR>")
+vim.keymap.set("n", "<leader>B", ":lua require('dap').set_breakpoint(vim.fn.input('Condition: '))<CR>")
+vim.keymap.set("n", "<leader>bl", ":lua require('dap').set_breakpoint(nil.nil,vim.fn.input('Log: '))<CR>")
+vim.keymap.set("n", "<leader>dr", ":lua require('dap').repl.open()<CR>")
+
+-- tests
+local function get_test_runner(test_name, debug)
+	if debug then
+		return 'mvn test -Dmaven.surefire.debug -Dtest="' .. test_name .. '"'
+	end
+	return 'mvn test -Dtest="' .. test_name .. '"'
+end
+
+local function run_java_test_method(debug)
+	local utils = require("mata649.utils")
+	local method_name = utils.get_current_full_method_name("\\#")
+	vim.cmd("term" .. get_test_runner(method_name, debug))
+end
+
+local function run_java_test_class(debug)
+	local utils = require("mata649.utils")
+	local class_name = utils.get_current_full_class_name()
+	vim.cmd("term" .. get_test_runner(class_name, debug))
+end
+
+vim.keymap.set("n", "<leader>tm", function()
+	run_java_test_method()
+end)
+vim.keymap.set("n", "<leader>TM", function()
+	run_java_test_method(true)
+end)
+vim.keymap.set("n", "<leader>tc", function()
+	run_java_test_class()
+end)
+vim.keymap.set("n", "<leader>TC", function()
+	run_java_test_class(true)
+end)
