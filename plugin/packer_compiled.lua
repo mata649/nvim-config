@@ -79,10 +79,25 @@ _G.packer_plugins = {
     path = "/home/mata649/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  bufselect = {
+    loaded = true,
+    path = "/home/mata649/.local/share/nvim/site/pack/packer/start/bufselect",
+    url = "https://github.com/PhilRunninger/bufselect"
+  },
+  ["cmp-dap"] = {
+    loaded = true,
+    path = "/home/mata649/.local/share/nvim/site/pack/packer/start/cmp-dap",
+    url = "https://github.com/rcarriga/cmp-dap"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/home/mata649/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
+  },
+  ["cmp-path"] = {
+    loaded = true,
+    path = "/home/mata649/.local/share/nvim/site/pack/packer/start/cmp-path",
+    url = "https://github.com/hrsh7th/cmp-path"
   },
   ["conform.nvim"] = {
     config = { "\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fconform\frequire\0" },
@@ -125,6 +140,11 @@ _G.packer_plugins = {
     path = "/home/mata649/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+  ["neodev.nvim"] = {
+    loaded = true,
+    path = "/home/mata649/.local/share/nvim/site/pack/packer/start/neodev.nvim",
+    url = "https://github.com/folke/neodev.nvim"
+  },
   neogit = {
     loaded = true,
     path = "/home/mata649/.local/share/nvim/site/pack/packer/start/neogit",
@@ -145,6 +165,11 @@ _G.packer_plugins = {
     path = "/home/mata649/.local/share/nvim/site/pack/packer/start/nvim-dap-python",
     url = "https://github.com/mfussenegger/nvim-dap-python"
   },
+  ["nvim-dap-ui"] = {
+    loaded = true,
+    path = "/home/mata649/.local/share/nvim/site/pack/packer/start/nvim-dap-ui",
+    url = "https://github.com/rcarriga/nvim-dap-ui"
+  },
   ["nvim-jdtls"] = {
     loaded = true,
     path = "/home/mata649/.local/share/nvim/site/pack/packer/start/nvim-jdtls",
@@ -159,6 +184,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mata649/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-nio"] = {
+    loaded = true,
+    path = "/home/mata649/.local/share/nvim/site/pack/packer/start/nvim-nio",
+    url = "https://github.com/nvim-neotest/nvim-nio"
   },
   ["nvim-treesitter"] = {
     loaded = true,

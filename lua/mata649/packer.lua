@@ -15,7 +15,6 @@ return require("packer").startup(function(use)
 	use("rebelot/kanagawa.nvim")
 	use({ "nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" } })
 	use("williamboman/mason.nvim")
-	use("mfussenegger/nvim-dap")
 	use({
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v3.x",
@@ -29,6 +28,9 @@ return require("packer").startup(function(use)
 			{ "L3MON4D3/LuaSnip" },
 		},
 	})
+	-- cmp
+	use("rcarriga/cmp-dap")
+	use("hrsh7th/cmp-path")
 	-- Java hell
 	use("mfussenegger/nvim-jdtls")
 
@@ -48,7 +50,9 @@ return require("packer").startup(function(use)
 	use("Raimondi/delimitMate")
 	-- Python
 	use("mfussenegger/nvim-dap-python")
-	use("linux-cultist/venv-selector.nvim", {
+	use({
+		"linux-cultist/venv-selector.nvim",
+		branch = "regexp",
 		requires = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim", "mfussenegger/nvim-dap-python" },
 	})
 	-- Git
@@ -56,5 +60,12 @@ return require("packer").startup(function(use)
 	use("NeogitOrg/neogit", {
 		requires = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim", "nvim-telescope/telescope.nvim" },
 	})
+
+	-- Dap
+	use("mfussenegger/nvim-dap")
+	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } })
+	use("folke/neodev.nvim")
+	-- At this point, I am just adding new stuff without grouping them
 	use("nvim-tree/nvim-web-devicons")
+	use("PhilRunninger/bufselect")
 end)

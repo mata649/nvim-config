@@ -111,41 +111,13 @@ local function run_spring_boot(debug)
 	vim.cmd("term " .. get_spring_boot_runner("local", debug))
 end
 
-vim.keymap.set("n", "<F9>", function()
+vim.api.nvim_create_user_command("SpringRun", function(opts)
 	run_spring_boot()
-end)
-
-vim.keymap.set("n", "<F10>", function()
+end, {})
+vim.api.nvim_create_user_command("SpringRunDev", function(opts)
 	run_spring_boot(true)
-end)
+end, {})
 
-function attach_to_debug()
-	local dap = require("dap")
-	dap.configurations.java = {
-		{
-			type = "java",
-			request = "attach",
-			name = "Attach to the process",
-			hostName = "localhost",
-			port = "5005",
-		},
-	}
-	dap.continue()
-end
-vim.keymap.set("n", "<leader>da", ":lua attach_to_debug()<CR>")
-
-vim.keymap.set("n", "<F5>", ":lua require('dap').continue()<CR>")
-vim.keymap.set("n", "<F6>", ":lua require('dap').step_over()<CR>")
-vim.keymap.set("n", "<F7>", ":lua require('dap').step_into()<CR>")
-vim.keymap.set("n", "<F8>", ":lua require('dap').step_out()<CR>")
-
--- setup debug
-vim.keymap.set("n", "<leader>b", ":lua require('dap').toggle_breakpoint()<CR>")
-vim.keymap.set("n", "<leader>B", ":lua require('dap').set_breakpoint(vim.fn.input('Condition: '))<CR>")
-vim.keymap.set("n", "<leader>bl", ":lua require('dap').set_breakpoint(nil.nil,vim.fn.input('Log: '))<CR>")
-vim.keymap.set("n", "<leader>dr", ":lua require('dap').repl.open()<CR>")
-
--- tests
 local function get_test_runner(test_name, debug)
 	if debug then
 		return 'mvn test -Dmaven.surefire.debug -Dtest="' .. test_name .. '"'
